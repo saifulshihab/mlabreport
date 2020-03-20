@@ -1,0 +1,73 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="login_form_wrap">
+        <div class="row">
+            <div class="col-5 text-center">
+                <div class="biglogo text-center">
+                    <img src="{% static 'images/mlab.PNG' %}" alt="">
+                    <h3 class="mt-2">Blockchain Based Lab Reporting System</h3>
+                </div>
+            </div>
+            <div class="col-7">
+                <div class="loginform">
+                    <h4>User Registration</h4>                    
+                    <form action="{% url 'registration' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group select_radio">
+                            <span class="d-inline-block mr-3 text-info">Select as</span>
+                            <div class="form-check form-check-inline">
+                              <input
+                                class="form-check-input"
+                                type="radio"
+                                name="selecteduser"
+                                id="doctor"
+                                value="doctor"
+                                required
+                              />
+                              <label class="form-check-label" for="doctor">Doctor</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input
+                                class="form-check-input"
+                                type="radio"
+                                name="selecteduser"
+                                id="patient"
+                                value="patient"
+                                required
+                              />
+                              <label class="form-check-label" for="patient">Patient</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input
+                                class="form-check-input"
+                                type="radio"
+                                name="selecteduser"
+                                id="assistant"
+                                value="assistant"
+                                required
+                              />
+                              <label class="form-check-label" for="assistant">Assistant</label>
+                            </div>
+                          </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" name="email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="password" placeholder="Password" required>
+                        </div>
+                        <input type="submit" name="registration" class="btn btn-block text-light btn-purple btn-sm" value="Submit" id="">
+                    </form>                    
+                    <a href="{% url 'login' %}" class="mt-2 btn btn-sm btn-block btn-outline-secondary">Login</a>
+                    <div class="msgbox mt-2">
+                      {% if messages %}
+                      {% for msg in messages %}
+                      <p class="alert alert-warning">{{msg}}</p>
+                      {% endfor %}
+                      {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

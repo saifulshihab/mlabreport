@@ -1,0 +1,25 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.btn-purple{
+    background: rgb(167, 16, 167);
+}
+.btn-purple:hover{
+    background: purple;
+    transition: 0.2s all ease;
+}
+.loginform{
+    display: block;
+    width: 51%;
+    height: 330px;
+    padding: 10px;
+    border: 1px solid #aaa;
+    border-radius: 5px;    
+    margin-top: 20%;    
+    margin-left: 20%;    
+}
+.biglogo{
+    display: inline-block;
+    margin-top: 30%;
+}
