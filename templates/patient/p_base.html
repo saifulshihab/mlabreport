@@ -1,0 +1,43 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Patient Dashboard </title>        
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">    
+    <script src="https://kit.fontawesome.com/a215bce284.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'styles/app.css' %}">    
+</head>
+
+<body>
+    <div id="officer_dashboard">
+        <nav class="navbar navbar-light bg-light fixed-top">
+            <a class="navbar-brand" href=""><i style="margin-right:15px"
+                    class="fas fa-school"></i>Home</a>            
+        </nav>
+        <div class="row" style="margin-top: 56px;">
+            <div class="col-3">
+                <div class="sidebar h_sidebar">
+                    <div class="side_menu" class="list-group pt">
+                        <a href="./" class="list-group-item"><i class="fas fa-tachometer-alt"></i>Profile</a>
+                        <a href="" class="list-group-item"><i
+                                class="fas fa-users"></i>Appointment</a>
+                        <a href="" class="list-group-item"><i class="fab fa-rev"></i>Lab Report</a>                        
+                        <a href="{% url 'p_logout'%}" class="list-group-item"><i class="fab fa-rev"></i>Logout</a>                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-9" style="margin-left:-20px">
+                <div class="" id="page_content">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

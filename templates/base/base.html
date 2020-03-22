@@ -4,7 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
@@ -18,7 +22,9 @@
 
     <script src="https://kit.fontawesome.com/a215bce284.js"></script>
 
-    <link rel="stylesheet" href="{% static 'styles/app.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/app.css' %}">    
+
+    <link rel="icon" href="{% static 'images/mlab.PNG'%}" type="" sizes="16x16"> 
 
 </head>
 <body>

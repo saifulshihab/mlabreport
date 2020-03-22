@@ -1,6 +1,11 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block content %}
+<title>
+  {% block title %}
+  User Login
+  {% endblock %}
+</title>
     <div class="login_form_wrap">
         <div class="row">
             <div class="col-5 text-center">
@@ -63,8 +68,10 @@
                     <a href="{% url 'registration' %}" class="btn btn-sm btn-block btn-outline-secondary">Create account</a>
                     <div class="msgbox mt-2">
                       {% if messages %}
-                      {% for msg in messages %}
-                      <p class="alert alert-warning">{{msg}}</p>
+                      {% for msg in messages %}                      
+                      {%if msgtype == 'failed'%}
+                      <p class="alert alert-danger">{{msg}}</p>
+                      {%endif%}
                       {% endfor %}
                       {% endif %}
                     </div>

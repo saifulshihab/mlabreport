@@ -1,6 +1,23 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import patient
+from assistant.views import assistantDashboard
+from assistant.models import assistant
+
+def patientDashboard(request):
+    return render(request, 'patient/dashboard.html')
+
+def isLogged(request):
+    if request.session.has_key('pemail'):        
+        return patientDashboard(request)
+    elif request.session.has_key('demail'):
+        pass
+    elif request.session.has_key('aemail'):
+        return assistantDashboard(request)        
+    else:
+        return render(request, 'base/login.html')
+
+
 def login(request):
     if request.method == 'POST':
         user_select = request.POST['selecteduser']
@@ -9,16 +26,30 @@ def login(request):
         elif user_select == "patient":            
             uemail = request.POST['email']
             upass = request.POST['password']
-            is_login = patient.objects.filter(email=uemail, password=upass)
+            is_login = patient.objects.filter(pemail=uemail, password=upass)
             if is_login:                    
+                    request.session['pemail'] = uemail
                     return render(request, 'patient/dashboard.html')
-            else:                
+            else:       
+                msg = 'failed'
+                context = {'msgtype': msg}         
                 messages.success(request, "Invalid credential. Try again..")
-                return render(request, 'base/login.html')
+                return render(request, 'base/login.html', context)
         else:   
-            pass     
-    else:        
-        return render(request, 'base/login.html')
+            uemail = request.POST['email']
+            upass = request.POST['password']
+            is_login = assistant.objects.filter(aemail=uemail, password=upass)
+            if is_login:                    
+                    request.session['aemail'] = uemail
+                    return render(request, 'assistant/dashboard.html')
+            else:       
+                msg = 'failed'
+                context = {'msgtype': msg}         
+                messages.success(request, "Invalid credential. Try again..")
+                return render(request, 'base/login.html', context)     
+    else:   
+        return isLogged(request)  
+
 def registration(request):
     if request.method == 'POST':
         user_select = request.POST['selecteduser']
@@ -27,14 +58,51 @@ def registration(request):
         elif user_select == "patient":            
             uemail = request.POST['email']
             upass = request.POST['password']
-            acc_create = patient(email=uemail, password=upass)
-            if acc_create.save():
-                    messages.success(request, "Error")
-                    return render(request, 'base/registration.html')
-            else:                
-                messages.success(request, "Patient account created!")
-                return render(request, 'base/registration.html')
+            check_multiple = patient.objects.filter(pemail=uemail)
+            if check_multiple:
+                msg = 'failed'
+                context = {'msgtype': msg}
+                messages.success(request, "This email is already registered!")
+                return render(request, 'base/registration.html', context)
+            else:
+                acc_create = patient(pemail=uemail, password=upass)
+                if acc_create.save():
+                        messages.success(request, "Error")
+                        msg = 'failed'
+                        context = {'msgtype': msg}
+                        return render(request, 'base/registration.html', context)
+                else:            
+                    msg = 'success'
+                    context = {'msgtype': msg}    
+                    messages.success(request, "Patient account created!")
+                    return render(request, 'base/registration.html', context)
         else:   
-            pass         
+            uemail = request.POST['email']
+            upass = request.POST['password']
+            check_multiple = assistant.objects.filter(aemail=uemail)
+            if check_multiple:
+                msg = 'failed'
+                context = {'msgtype': msg}
+                messages.success(request, "This email is already registered!")
+                return render(request, 'base/registration.html', context)
+            else:
+                acc_create = assistant(aemail=uemail, password=upass)
+                if acc_create.save():
+                        messages.success(request, "Error")
+                        msg = 'failed'
+                        context = {'msgtype': msg}
+                        return render(request, 'base/registration.html', context)
+                else:            
+                    msg = 'success'
+                    context = {'msgtype': msg}    
+                    messages.success(request, "Assistant account created!")
+                    return render(request, 'base/registration.html', context)         
     else:        
         return render(request, 'base/registration.html')
+
+def p_logout(request):
+    try:
+        del request.session['pemail']
+    except KeyError:
+        pass
+    return redirect('login')
