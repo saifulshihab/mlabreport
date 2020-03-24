@@ -12,25 +12,32 @@
     <link rel="stylesheet" href="{% static 'styles/app.css' %}">    
 </head>
 
-<body>
-    <div id="officer_dashboard">
+<body id="_dashboard_body"> 
+    <div id="_dashboard">
         <nav class="navbar navbar-light bg-light fixed-top">
-            <a class="navbar-brand" href=""><i style="margin-right:15px"
-                    class="fas fa-school"></i>Home</a>            
+            {% if pa %}
+            {% for a in pa %}
+            {% if a.patient_name == "" %}
+            <a class="navbar-brand" href="#">Welcome back, <span style="color: rgb(63, 146, 63);">{{a.pemail}}</span></a>
+            {% else %}                                        
+            <a class="navbar-brand" href="#">Welcome back, {{a.patient_name}}</a>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+            <!-- <a class="navbar-brand" href="">Welcome back, </a>            -->
         </nav>
         <div class="row" style="margin-top: 56px;">
             <div class="col-3">
-                <div class="sidebar h_sidebar">
+                <div class="sidebar">
                     <div class="side_menu" class="list-group pt">
-                        <a href="./" class="list-group-item"><i class="fas fa-tachometer-alt"></i>Profile</a>
-                        <a href="" class="list-group-item"><i
-                                class="fas fa-users"></i>Appointment</a>
-                        <a href="" class="list-group-item"><i class="fab fa-rev"></i>Lab Report</a>                        
-                        <a href="{% url 'p_logout'%}" class="list-group-item"><i class="fab fa-rev"></i>Logout</a>                        
+                        <a href="" class="list-group-item"><i class="fas fa-user"></i>Profile</a>
+                        <a href="" class="list-group-item"><i class="far fa-calendar-check"></i>Appointment</a>
+                        <a href="" class="list-group-item"><i class="fas fa-chart-line"></i>Lab Report</a>                        
+                        <a href="{% url 'p_logout'%}" class="list-group-item"><i class="fas fa-sign-out-alt"></i>Logout</a>                        
                     </div>
                 </div>
             </div>
-            <div class="col-9" style="margin-left:-20px">
+            <div class="col-9">
                 <div class="" id="page_content">
                     {% block content %}
                     {% endblock %}

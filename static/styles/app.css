@@ -1,6 +1,9 @@
 body{
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.row{
+    margin-right: 0 !important;
 }
 .btn-purple{
     background: rgb(167, 16, 167);
@@ -22,4 +25,31 @@ body{
 .biglogo{
     display: inline-block;
     margin-top: 30%;
+}
+#_dashboard_body{
+    background: rgb(237, 239, 244);
+}
+.sidebar{
+background: #f2f2f2;
+height: 100vh;
+}
+.side_menu{
+    
+}
+.side_menu .list-group-item{
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    font-size: 14px !important;
+    color: #666;
+    padding: 10px 20px;
+    text-decoration: none;    
+}
+.side_menu .list-group-item:hover{
+     color: black;     
+     background-color: white !important;
+     transition: 0.2s all ease;
+}
+.side_menu i{
+    margin-right: 7px;
 }

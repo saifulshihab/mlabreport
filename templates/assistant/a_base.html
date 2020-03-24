@@ -12,15 +12,22 @@
     <link rel="stylesheet" href="{% static 'styles/app.css' %}">    
 </head>
 
-<body>
-    <div id="officer_dashboard">
+<body id="_dashboard_body"> 
+    <div id="_dashboard">
         <nav class="navbar navbar-light bg-light fixed-top">
-            <a class="navbar-brand" href=""><i style="margin-right:15px"
-                    class="fas fa-school"></i>Home</a>            
+            {% if assis %}
+            {% for a in assis %}
+            {% if a.assistant_name == "" %}
+            <a class="navbar-brand" href="#">Welcome back, {{a.aemail}}</a>
+            {% else %}                                        
+            <a class="navbar-brand" href="#">Welcome back, {{a.assistant_name}}</a>
+            {% endif %}
+            {% endfor %}
+            {% endif %}                        
         </nav>
         <div class="row" style="margin-top: 56px;">
             <div class="col-3">
-                <div class="sidebar h_sidebar">
+                <div class="sidebar">
                     <div class="side_menu" class="list-group pt">
                         <a href="./" class="list-group-item"><i class="fas fa-tachometer-alt"></i>Profile</a>
                         <a href="" class="list-group-item"><i
@@ -29,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-9" style="margin-left:-20px">
+            <div class="col-9">
                 <div class="" id="page_content">
                     {% block content %}
                     {% endblock %}

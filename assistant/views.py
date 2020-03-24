@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-#from patient.views import isLogged cannot import
+# from home.views import isLogged  
 
 def assistantDashboard(request):
     return render(request, 'assistant/dashboard.html')
