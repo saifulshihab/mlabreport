@@ -15,14 +15,12 @@
 <body id="_dashboard_body"> 
     <div id="_dashboard">
         <nav class="navbar navbar-light bg-light fixed-top">
-            {% if pa %}
-            {% for a in pa %}
-            {% if a.patient_name == "" %}
-            <a class="navbar-brand" href="#">Welcome back, <span style="color: rgb(63, 146, 63);">{{a.pemail}}</span></a>
+            {% if pa %}            
+            {% if pa.patient_name == "" %}
+            <a class="navbar-brand" href="#">Welcome back, <span style="color: rgb(63, 146, 63);">{{pa.pemail}}</span></a>
             {% else %}                                        
-            <a class="navbar-brand" href="#">Welcome back, {{a.patient_name}}</a>
-            {% endif %}
-            {% endfor %}
+            <a class="navbar-brand" href="#">Welcome back, <span style="color: rgb(63, 146, 63);">{{pa.patient_name}}</span></a>
+            {% endif %}            
             {% endif %}
             <!-- <a class="navbar-brand" href="">Welcome back, </a>            -->
         </nav>
@@ -30,7 +28,7 @@
             <div class="col-3">
                 <div class="sidebar">
                     <div class="side_menu" class="list-group pt">
-                        <a href="" class="list-group-item"><i class="fas fa-user"></i>Profile</a>
+                        <a href="{% url 'p_profile' %}" class="list-group-item"><i class="fas fa-user"></i>Profile</a>
                         <a href="" class="list-group-item"><i class="far fa-calendar-check"></i>Appointment</a>
                         <a href="" class="list-group-item"><i class="fas fa-chart-line"></i>Lab Report</a>                        
                         <a href="{% url 'p_logout'%}" class="list-group-item"><i class="fas fa-sign-out-alt"></i>Logout</a>                        

@@ -5,6 +5,9 @@ body{
 .row{
     margin-right: 0 !important;
 }
+.form-control{
+    padding: 3px 5px !important;
+}
 .btn-purple{
     background: rgb(167, 16, 167);
 }
@@ -21,6 +24,9 @@ body{
     border-radius: 5px;    
     margin-top: 20%;    
     margin-left: 20%;    
+}
+.lgi{
+    height: 370px !important;
 }
 .biglogo{
     display: inline-block;
@@ -50,6 +56,24 @@ height: 100vh;
      background-color: white !important;
      transition: 0.2s all ease;
 }
-.side_menu i{
+i{
     margin-right: 7px;
+}
+#page_content{
+    padding: 10px;
+}
+.p_profile{
+    background: white;
+    box-shadow: 0px 0px 15px #7d7b7b;    
+    padding: 10px;    
+    border-radius: 5px;    
+    width: 50%;
+    margin: 0 auto;
+}
+.media{
+    height: 200px;
+}
+.media img{
+    width: 200px !important;
+    height: 200px !important;
 }

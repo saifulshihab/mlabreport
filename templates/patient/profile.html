@@ -1,0 +1,25 @@
+{% extends 'patient/p_base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="p_profile">
+    {% if alert %}
+    {% if alertcolor %}
+    <p class="alert alert-success"><i class="fas fa-check-circle"></i>{{alert}}</p>
+    {% else %}
+    <p class="alert alert-danger"><i class="fas fa-exclamation-circle"></i>{{alert}}</p>
+    {% endif %}    
+    {%  endif %}
+    {% if noform %}  
+    {% else %}
+    <h3>Profile</h3>
+    <div class="media">
+        <img class="rounded-circle account-img" src="{{ pa.dp.url }}">        
+    </div>  
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ profile_update_form | crispy }}
+        <input type="submit" value="Update" class="btn btn-success btn-sm">
+    </form>
+</div>
+{% endif %}    
+{% endblock %}

@@ -1,14 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from assistant.views import assistantDashboard
 from assistant.models import assistant
-from patient.views import patientDashboard
+from patient.views import patientProfile
 from patient.models import patient
-
+from patient.forms import ProfileUpdateForm
 
 def isLogged(request):
     if request.session.has_key('pemail'):        
-        return patientDashboard(request)
+        return patientProfile(request)
     elif request.session.has_key('demail'):
         pass
     elif request.session.has_key('aemail'):
@@ -27,9 +27,7 @@ def login(request):
             is_login = patient.objects.filter(pemail=uemail, password=upass)
             if is_login:                    
                     request.session['pemail'] = uemail
-                    fetch_user = patient.objects.filter(pemail=uemail)
-                    context = {'pa': fetch_user}
-                    return render(request, 'patient/dashboard.html', context)
+                    return redirect('p_profile')
             else:       
                 msg = 'failed'
                 context = {'msgtype': msg}         
