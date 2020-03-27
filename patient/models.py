@@ -10,6 +10,7 @@ class patient(models.Model):
     mother_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=11)
     age = models.CharField(max_length=10)
+    p_identity = models.CharField(max_length=11)
 
     def save(self, *args, **kwargs):
         super(patient, self).save(*args, **kwargs)

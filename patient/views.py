@@ -13,17 +13,16 @@ def patientProfile(request):
     if request.session.has_key('pemail'):
         alertmsg = ""
         user_email = request.session.get('pemail')                   
-        if request.method == 'POST':            
-            p = patient.objects.filter(pemail=user_email)                
-            form = ProfileUpdateForm(request.POST, request.FILES, instance=p)                            
-            if form.is_valid():                                                                
-                form.save()
-                fetch_user = patient.objects.get(pemail=user_email)                 
+        fetch_user = patient.objects.get(pemail=user_email)                 
+        if request.method == 'POST':                        
+            form = ProfileUpdateForm(request.POST, request.FILES, instance=fetch_user)                            
+            if form.is_valid():        
+                fetch_user.p_identity = form.cleaned_data['phone']                
+                form.save()                    
                 alertmsg = "Your profile is updated!"                
-                context = {'pa': fetch_user, 'alert': alertmsg, 'alertcolor': True, 'noform': True}
+                context = {'pa': fetch_user, 'alert': alertmsg, 'alertcolor': True, 'noform': True, 'has_pid':True}
                 return render(request, 'patient/profile.html', context)
-        else:        
-            fetch_user = patient.objects.get(pemail=user_email)                                
+        else:                    
             if(fetch_user.patient_name == "" or 
                 fetch_user.father_name == "" or 
                 fetch_user.mother_name == "" or 

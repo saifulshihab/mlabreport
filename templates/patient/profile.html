@@ -11,7 +11,7 @@
     {%  endif %}
     {% if noform %}  
     {% else %}
-    <h3>Profile</h3>
+    <h3 class="d-inline-block mr-2">Profile</h3>{% if pa.p_identity %}<span style="font-size: 13px;color:green;">PID: {{ pa.p_identity }}</span>{% endif %}
     <div class="media">
         <img class="rounded-circle account-img" src="{{ pa.dp.url }}">        
     </div>  

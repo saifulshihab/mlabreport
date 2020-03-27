@@ -1,12 +1,19 @@
+
+/*@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+font-family: 'Raleway', sans-serif !important;*/
+
 body{
     margin: 0 !important;
-    padding: 0 !important;
+    padding: 0 !important;    
 }
 .row{
     margin-right: 0 !important;
 }
 .form-control{
-    padding: 3px 5px !important;
+    outline: none !important;
+    border: none !important;        
+    border-bottom: 1px solid #b5afaf !important;
+    border-radius: 0 !important;
 }
 .btn-purple{
     background: rgb(167, 16, 167);
@@ -76,4 +83,5 @@ i{
 .media img{
     width: 200px !important;
     height: 200px !important;
+    margin: 0 auto;
 }
