@@ -5,4 +5,5 @@ class assistant(models.Model):
     password = models.CharField(max_length=50, blank=False)
     assistant_name = models.CharField(max_length=50)    
     phone = models.CharField(max_length=11)    
+    org = models.CharField(max_length=200)
 
