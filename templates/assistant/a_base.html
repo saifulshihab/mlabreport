@@ -6,10 +6,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Assistant Dashboard </title>        
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">    
-    <script src="https://kit.fontawesome.com/a215bce284.js" crossorigin="anonymous"></script>
+    <title>Assistant Dashboard </title>      
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script src="https://kit.fontawesome.com/a215bce284.js"></script>
+
     <link rel="stylesheet" href="{% static 'styles/app.css' %}">    
+
+    <link rel="icon" href="{% static 'images/mlab.PNG'%}" type="" sizes="16x16"> 
 </head>
 
 <body id="_dashboard_body"> 
@@ -29,8 +41,8 @@
             <div class="col-3">
                 <div class="sidebar">
                     <div class="side_menu" class="list-group pt">
-                        <a href="./" class="list-group-item"><i class="fas fa-tachometer-alt"></i>Profile</a>
-                        <a href="" class="list-group-item"><i
+                        <a href="{% url 'a_dashboard' %}" class="list-group-item"><i class="fas fa-tachometer-alt"></i>Profile</a>
+                        <a href="{% url 'upload_report' %}" class="list-group-item"><i
                                 class="fas fa-users"></i>Upload lab report</a>                        
                         <a href="{% url 'a_logout'%}" class="list-group-item"><i class="fab fa-rev"></i>Logout</a>                        
                     </div>

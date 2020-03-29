@@ -11,6 +11,10 @@ class patient(models.Model):
     phone = models.CharField(max_length=11)
     age = models.CharField(max_length=10)
     p_identity = models.CharField(max_length=11)
+    has_pid = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.p_identity
 
     def save(self, *args, **kwargs):
         super(patient, self).save(*args, **kwargs)

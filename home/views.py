@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from assistant.views import assistantDashboard
+from assistant.views import a_dashboard
 from assistant.models import assistant
 from patient.views import patientProfile
 from patient.models import patient
@@ -12,7 +12,7 @@ def isLogged(request):
     elif request.session.has_key('demail'):
         pass
     elif request.session.has_key('aemail'):
-        return assistantDashboard(request)        
+        return a_dashboard(request)        
     else:
         return render(request, 'base/login.html')
 
@@ -38,10 +38,8 @@ def login(request):
             upass = request.POST['password']
             is_login = assistant.objects.filter(aemail=uemail, password=upass)
             if is_login:                    
-                    request.session['aemail'] = uemail
-                    fetch_user = assistant.objects.filter(aemail=uemail)
-                    context = {'assis': fetch_user}
-                    return render(request, 'assistant/dashboard.html', context)
+                    request.session['aemail'] = uemail                    
+                    return redirect('a_dashboard')
             else:       
                 msg = 'failed'
                 context = {'msgtype': msg}         
