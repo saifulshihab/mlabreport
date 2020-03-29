@@ -14,7 +14,8 @@
             {% if r.seen == False %}
             <span class="badge badge-danger"><i style="margin-right:4px;" class="fas fa-exclamation"></i>New</span>
             {% endif %}
-            <span style="font-size:12px" class="float-right mt-1"><i class="fas fa-clock"></i>Upload on {{r.submit_date}}</span>
+            <span style="font-size:12px" class="float-right mt-1"><i class="fas fa-clock"></i>Upload on {{r.submit_date}}
+                <a href="{{ r.download_report }}" class="ml-1 badge badge-success"><i style="margin-right:0;" class="fas fa-download"></i></a></span>            
         </p>
         {% endfor %}
         {% endif %}

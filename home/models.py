@@ -35,6 +35,8 @@ class lab_report(models.Model):
 
     def get_report(self):
         return f"view_report/{self.id}/"
+    def download_report(self):
+        return f"DownloadReportasPDF/{self.id}/"
     
     def __str__(self):
         return self.p_identity

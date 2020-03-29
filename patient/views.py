@@ -92,5 +92,12 @@ class view_report(View):
         pdf = render_to_pdf('patient/report_pdf.html', context)
         return HttpResponse(pdf, content_type='application/pdf')
 
-
-
+class DownloadReportasPDF(View):
+    def get(self, request, rid, *args, **kwargs):
+        context = {'report':lab_report.objects.get(id=rid)}
+        pdf = render_to_pdf('patient/report_pdf.html', context)
+        response = HttpResponse(pdf, content_type='application/pdf')
+        filename = "Lab_Test_Report_%s.pdf"
+        content = "attachment; filename=%s" %(filename)
+        response['Content-Disposition'] = content
+        return response
