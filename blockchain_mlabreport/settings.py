@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'patient.apps.PatientConfig',
     'assistant.apps.AssistantConfig',
     'home.apps.HomeConfig',
+    'doctor.apps.DoctorConfig',
     'crispy_forms',
 ]
 

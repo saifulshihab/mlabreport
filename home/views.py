@@ -5,12 +5,13 @@ from assistant.models import assistant
 from patient.views import patientProfile
 from patient.models import patient
 from patient.forms import ProfileUpdateForm
-
+from doctor.models import doctor
+from doctor.views import d_dashboard
 def isLogged(request):
     if request.session.has_key('pemail'):        
         return patientProfile(request)
     elif request.session.has_key('demail'):
-        pass
+        return d_dashboard(request)        
     elif request.session.has_key('aemail'):
         return a_dashboard(request)        
     else:
@@ -20,7 +21,17 @@ def login(request):
     if request.method == 'POST':
         user_select = request.POST['selecteduser']
         if user_select == "doctor":
-            pass
+            uemail = request.POST['email']
+            upass = request.POST['password']
+            is_login = doctor.objects.filter(demail=uemail, password=upass)
+            if is_login:                    
+                    request.session['demail'] = uemail
+                    return redirect('d_dashboard')
+            else:       
+                msg = 'failed'
+                context = {'msgtype': msg}         
+                messages.success(request, "Invalid credential. Try again..")
+                return render(request, 'base/login.html', context)
         elif user_select == "patient":            
             uemail = request.POST['email']
             upass = request.POST['password']
@@ -52,7 +63,21 @@ def registration(request):
     if request.method == 'POST':
         user_select = request.POST['selecteduser']
         if user_select == "doctor":
-            pass
+            uemail = request.POST['email']
+            upass = request.POST['password']
+            check_multiple = doctor.objects.filter(demail=uemail)
+            if check_multiple:
+                msg = 'failed'
+                context = {'msgtype': msg}
+                messages.success(request, "This email is already registered!")
+                return render(request, 'base/registration.html', context)
+            else:
+                acc_create = doctor(demail=uemail, password=upass)
+                acc_create.save()                    
+                msg = 'success'
+                context = {'msgtype': msg}    
+                messages.success(request, "doctor account created!")
+                return render(request, 'base/registration.html', context)
         elif user_select == "patient":            
             uemail = request.POST['email']
             upass = request.POST['password']
@@ -64,16 +89,11 @@ def registration(request):
                 return render(request, 'base/registration.html', context)
             else:
                 acc_create = patient(pemail=uemail, password=upass)
-                if acc_create.save():
-                        messages.success(request, "Error")
-                        msg = 'failed'
-                        context = {'msgtype': msg}
-                        return render(request, 'base/registration.html', context)
-                else:            
-                    msg = 'success'
-                    context = {'msgtype': msg}    
-                    messages.success(request, "Patient account created!")
-                    return render(request, 'base/registration.html', context)
+                acc_create.save()                             
+                msg = 'success'
+                context = {'msgtype': msg}    
+                messages.success(request, "Patient account created!")
+                return render(request, 'base/registration.html', context)
         else:   
             uemail = request.POST['email']
             upass = request.POST['password']
@@ -85,16 +105,11 @@ def registration(request):
                 return render(request, 'base/registration.html', context)
             else:
                 acc_create = assistant(aemail=uemail, password=upass)
-                if acc_create.save():
-                        messages.success(request, "Error")
-                        msg = 'failed'
-                        context = {'msgtype': msg}
-                        return render(request, 'base/registration.html', context)
-                else:            
-                    msg = 'success'
-                    context = {'msgtype': msg}    
-                    messages.success(request, "Assistant account created!")
-                    return render(request, 'base/registration.html', context)         
+                acc_create.save()                    
+                msg = 'success'
+                context = {'msgtype': msg}    
+                messages.success(request, "Assistant account created!")
+                return render(request, 'base/registration.html', context)         
     else:        
         return render(request, 'base/registration.html')
 

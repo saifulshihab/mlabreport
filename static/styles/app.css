@@ -43,11 +43,8 @@ body{
     background: rgb(237, 239, 244);
 }
 .sidebar{
-background: #f2d7ed;
+background: #ccc;
 height: 100vh;
-}
-.side_menu{
-    
 }
 .side_menu .list-group-item{
     background-color: transparent !important;
