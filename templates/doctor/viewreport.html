@@ -1,0 +1,32 @@
+{% extends 'doctor/d_base.html' %}
+{% block content %}
+<div class="doctor_view_report p-2 bg-light">
+    <div class="serch_bar">
+        <h5 class="mb-1">Search</h5>
+        <form action="" method="GET">
+            {{ srcFilter.form }}
+            <input type="submit" class="btn btn-sm btn-primary" value="Search">
+        </form>
+    </div>
+    <div class="src_result">
+        <div class="row">
+            {% if srcFilter %}            
+            {% for r in reports %}
+            <div class="col-sm-6 mb-1">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">{{r.p_name}}</h5>
+                  <p class="card-text mb-0">{{r.o_name}}</p>
+                  <span class="mb-2" style="font-size: 13px; color:#ddd;">Submit date: {{r.submit_date}}</span><br>
+                  <a href="{{ r.get_report }}" target="_blank" class="btn btn-success btn-sm ">View Report</a>
+                </div>
+              </div>
+            </div> 
+            {% endfor %}          
+            {% endif %}
+          </div>
+    </div>
+    
+</div>
+
+{% endblock %}

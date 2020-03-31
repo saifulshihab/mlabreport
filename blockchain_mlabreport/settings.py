@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'doctor.apps.DoctorConfig',
     'crispy_forms',
+    'django_filters',
 ]
 
 MIDDLEWARE = [

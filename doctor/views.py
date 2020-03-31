@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import doctor
-# Create your views here.
+from home.models import lab_report
+from .filters import reportFilter
 def d_logout(request):
     try:
         del request.session['demail']
@@ -16,3 +17,15 @@ def d_dashboard(request):
         return render(request, 'doctor/dashboard.html', context)
     else:
         return redirect('login')
+
+def view_report(request):
+    if request.session.has_key('demail'):
+        user_email = request.session.get('demail')                   
+        this_user = doctor.objects.filter(demail=user_email)        
+        srcFilter = reportFilter(request.GET, queryset=lab_report.objects.all())
+        report = srcFilter.qs
+        context = {'doctor': this_user, 'reports': report, 'srcFilter': srcFilter}
+        return render(request, 'doctor/viewreport.html', context)
+    else:
+        return redirect('login')
+

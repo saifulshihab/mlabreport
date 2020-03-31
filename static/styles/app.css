@@ -82,7 +82,7 @@ i{
     height: 200px !important;
     margin: 0 auto;
 }
-.upload_report_, .preport{
+.upload_report_, .preport, .doctor_view_report{
     border-radius: 5px;
     box-shadow: 0px 0px 15px #7d7b7b;    
 }

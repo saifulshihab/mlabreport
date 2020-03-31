@@ -29,7 +29,7 @@ class lab_report(models.Model):
     test4_desc = models.TextField(max_length=500)
     test_5 = models.CharField(max_length=100)
     test5_desc = models.TextField(max_length=500)
-    submit_date = models.DateField(default=timezone.now())
+    submit_date = models.DateTimeField(default=timezone.now())
     seen = models.BooleanField(default=False)
     p_identity = models.ForeignKey(patient, on_delete=models.CASCADE)
 
