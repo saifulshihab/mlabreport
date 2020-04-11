@@ -2,6 +2,13 @@ from django.shortcuts import render, redirect
 from .models import doctor
 from home.models import lab_report
 from .filters import reportFilter
+from django.views import View
+from io import BytesIO
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+
+
 def d_logout(request):
     try:
         del request.session['demail']
@@ -29,3 +36,19 @@ def view_report(request):
     else:
         return redirect('login')
 
+
+def render_to_pdf(template_src, context_dict={}):
+	template = get_template(template_src)
+	html = template.render(context_dict)
+	result = BytesIO()
+	pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
+	if not pdf.err:
+		return HttpResponse(result.getvalue(), content_type='application/pdf')
+	return None
+
+class view_report2(View):    
+    def get(self, request, rid, *args, **kwargs):
+        context = {'report':lab_report.objects.get(id=rid)}
+        lab_report.objects.filter(id=rid).update(seen=True)
+        pdf = render_to_pdf('patient/report_pdf.html', context)
+        return HttpResponse(pdf, content_type='application/pdf')

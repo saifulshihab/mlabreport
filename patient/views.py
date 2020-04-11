@@ -101,3 +101,15 @@ class DownloadReportasPDF(View):
         content = "attachment; filename=%s" %(filename)
         response['Content-Disposition'] = content
         return response
+
+def preview_report(request, rid):
+    if request.session.has_key('pemail'): 
+        r = lab_report.objects.get(id=rid)       
+        if r.preview == True:
+            lab_report.objects.filter(id=rid).update(preview=False)            
+        else:
+            lab_report.objects.filter(id=rid).update(preview=True)            
+        return redirect(p_report)
+    else:
+        pass
+

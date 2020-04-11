@@ -18,7 +18,11 @@
                   <h5 class="card-title">{{r.p_name}}</h5>
                   <p class="card-text mb-0">{{r.o_name}}</p>
                   <span class="mb-2" style="font-size: 13px; color:#ddd;">Submit date: {{r.submit_date}}</span><br>
-                  <a href="{{ r.get_report }}" target="_blank" class="btn btn-success btn-sm ">View Report</a>
+                  {% if r.preview %}
+                  <a href="{{ r.get_report2 }}" target="_blank" class="btn btn-success btn-sm ">View Report</a>
+                  {% else %}
+                  <p class="text-muted">This report is locked by user.</p>
+                  {% endif %}
                 </div>
               </div>
             </div> 

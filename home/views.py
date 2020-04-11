@@ -89,7 +89,7 @@ def registration(request):
                 return render(request, 'base/registration.html', context)
             else:
                 acc_create = patient(pemail=uemail, password=upass)
-                acc_create.save()                             
+                acc_create.save()                          
                 msg = 'success'
                 context = {'msgtype': msg}    
                 messages.success(request, "Patient account created!")

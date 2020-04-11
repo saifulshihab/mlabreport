@@ -31,12 +31,19 @@ class lab_report(models.Model):
     test5_desc = models.TextField(max_length=500)
     submit_date = models.DateTimeField(default=timezone.now())
     seen = models.BooleanField(default=False)
+    preview = models.BooleanField(default=True)
     p_identity = models.ForeignKey(patient, on_delete=models.CASCADE)
 
     def get_report(self):
         return f"view_report/{self.id}/"
+    def get_report2(self):
+        return f"view_report2/{self.id}/"  
+              
     def download_report(self):
         return f"DownloadReportasPDF/{self.id}/"
-    
+
+    def preview_report(self):
+        return f"preview_reportt/{self.id}"
+
     def __str__(self):
         return self.p_identity
