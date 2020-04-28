@@ -17,9 +17,9 @@
             <span style="font-size:12px" class="float-right mt-1"><i class="fas fa-clock"></i>Uploaded on {{r.submit_date}}
             <a href="{{ r.download_report }}" class="ml-1 badge badge-success"><i style="margin-right:0;" class="fas fa-download"></i></a>
             {% if r.preview == True %}
-            <a href="{{ r.preview_report }}" style="margin-bottom: -3px;" class="ml-2 btn btn-sm btn-outline-success"><i class="fas fa-unlock"></i>Preview Enable</a>            
+            <a href="{{ r.preview_report }}" style="margin-bottom: -3px;" class="ml-2 btn btn-sm btn-outline-success"><i class="fas fa-unlock"></i></a>            
             {% else %}
-            <a href="{{ r.preview_report }}" style="margin-bottom: -3px;" class="ml-2 btn btn-sm btn-outline-danger"><i class="fas fa-lock"></i>Preview Disable</a>            
+            <a href="{{ r.preview_report }}" style="margin-bottom: -3px;" class="ml-2 btn btn-sm btn-outline-danger"><i class="fas fa-lock"></i></a>            
             {% endif %}
             </span>            
         </p>

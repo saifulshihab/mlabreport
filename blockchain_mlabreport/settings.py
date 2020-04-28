@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'doctor.apps.DoctorConfig',
     'crispy_forms',
-    'django_filters',
+    'django_filters'    
 ]
 
 MIDDLEWARE = [
@@ -79,13 +79,22 @@ WSGI_APPLICATION = 'blockchain_mlabreport.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'blockchain_mlabreport',
+        'USER': 'postgres',
+        'PASSWORD': '4956',
+        'HOST': 'localhost',
+        'PORT': '5432'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
