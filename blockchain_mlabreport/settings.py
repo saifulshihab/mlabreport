@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'doctor.apps.DoctorConfig',
     'crispy_forms',
-    'django_filters'    
+    'django_filters'
 ]
 
 MIDDLEWARE = [
@@ -90,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'blockchain_mlabreport',
         'USER': 'postgres',
-        'PASSWORD': '4956',
+        'PASSWORD': '1234',
         'HOST': 'localhost',
         'PORT': '5432'
     }
