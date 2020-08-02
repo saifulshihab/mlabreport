@@ -20,7 +20,7 @@
                     <form action="{% url 'registration' %}" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="form-group select_radio">
-                            <span class="d-inline-block mr-3 text-info">Select as</span>
+                            <span class="d-inline-block mr-3 text-info">Select user type</span>
                             <div class="form-check form-check-inline">
                               <input
                                 class="form-check-input"
@@ -63,7 +63,7 @@
                         </div>
                         <input type="submit" name="registration" class="btn btn-block text-light btn-purple btn-sm" value="Submit" id="">
                     </form>                    
-                    <a href="{% url 'login' %}" class="mt-2 btn btn-sm btn-block btn-outline-secondary">Login</a>
+                    <a href="{% url 'login' %}">Login</a>
                     <div class="msgbox mt-2">
                       {% if messages %}
                       {% for msg in messages %}

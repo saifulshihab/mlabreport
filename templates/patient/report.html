@@ -4,24 +4,33 @@
 <div class="preport bg-light p-3">
     <h3 class="mb-2">Your Lab Test Report {% if has_report %}({{ has_report.count }}){%endif%}</h3>
     {% if msg %}
-    <p class="alert alert-danger"><i class="fas fa-exclamation-circle"></i>{{ msg }}</p>    
+    <p class="alert alert-danger"><i class="fas fa-exclamation-circle"></i>{{ msg }}</p>
     {% else %}
     <div class="report_list">
-        {% if has_report %}        
+        {% if has_report %}
         {% for r in has_report %}
         <p class="alert alert-light">
-            <a class="mr-3" style="font-size: 13px;color:green" target="_blank" href="{{ r.get_report }}"><i class="fas fa-hand-point-right"></i>{{r.o_name}}</a>
+            <a class="mr-3" style="font-size: 13px;color:green" target="_blank" href="{{ r.get_report }}"><i
+                    class="fas fa-hand-point-right"></i>{{r.o_name}}</a>
             {% if r.seen == False %}
             <span class="badge badge-danger"><i style="margin-right:4px;" class="fas fa-exclamation"></i>New</span>
-            {% endif %}            
-            <span style="font-size:12px" class="float-right mt-1"><i class="fas fa-clock"></i>Uploaded on {{r.submit_date}}
-            <a href="{{ r.download_report }}" class="ml-1 badge badge-success"><i style="margin-right:0;" class="fas fa-download"></i></a>
-            {% if r.preview == True %}
-            <a href="{{ r.preview_report }}" style="margin-bottom: -3px;" class="ml-2 btn btn-sm btn-outline-success"><i class="fas fa-unlock"></i></a>            
-            {% else %}
-            <a href="{{ r.preview_report }}" style="margin-bottom: -3px;" class="ml-2 btn btn-sm btn-outline-danger"><i class="fas fa-lock"></i></a>            
             {% endif %}
-            </span>            
+            <span style="font-size:12px" class="float-right mr-1"><i class="fas fa-clock"></i>Uploaded on
+                {{r.submit_date}}
+                <a href="{{ r.download_report }}" class="ml-1 badge badge-success"><i style="margin-right:0;"
+                        class="fas fa-download"></i></a>
+            </span>
+            {% if r.preview == True %}
+            <span class="float-right mr-2" style="margin-top: -4px">
+                <a href="{{ r.preview_report }}" class="btn btn-sm btn-outline-success"><i
+                        class="fas fa-unlock"></i></a>
+            </span>
+            {% else %}
+            <span class="float-right mr-2" style="margin-top: -4px">
+
+                <a href="{{ r.preview_report }}" class="btn btn-sm btn-outline-danger"><i class="fas fa-lock"></i></a>
+            </span>
+            {% endif %}
         </p>
         {% endfor %}
         {% endif %}

@@ -6,36 +6,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Patient Dashboard </title>        
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">    
+    <title>Patient Dashboard </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/a215bce284.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{% static 'styles/app.css' %}">    
+    <link rel="stylesheet" href="{% static 'styles/app.css' %}">
 </head>
 
-<body id="_dashboard_body"> 
+<body id="_dashboard_body">
     <div id="_dashboard">
-        <nav class="navbar navbar-light bg-light fixed-top">
-            {% if pa %}            
+        <nav class="navbar navbar-dark bg-dark fixed-top">
+            {% if pa %}
             {% if pa.patient_name == "" %}
-            <a class="navbar-brand" href="#">Welcome back, <span style="color: rgb(63, 146, 63);">{{pa.pemail}}</span></a>
-            {% else %}                                        
-            <a class="navbar-brand" href="#">Welcome back, <span style="color: rgb(63, 146, 63);">{{pa.patient_name}}</span></a>
-            {% endif %}            
+            <a class="navbar-brand" href="#">Welcome back, <span
+                    style="color: rgb(63, 146, 63);">{{pa.pemail}}</span></a>
+            {% else %}
+            <a class="navbar-brand" href="#">Welcome back, <span
+                    style="color: rgb(63, 146, 63);">{{pa.patient_name}}</span></a>
+            {% endif %}
             {% endif %}
             <!-- <a class="navbar-brand" href="">Welcome back, </a>            -->
         </nav>
         <div class="row" style="margin-top: 56px;">
-            <div class="col-3">
+            <div class="col-2">
                 <div class="sidebar">
                     <div class="side_menu" class="list-group pt">
                         <a href="{% url 'p_profile' %}" class="list-group-item"><i class="fas fa-user"></i>Profile</a>
                         <a href="" class="list-group-item"><i class="far fa-calendar-check"></i>Appointment</a>
-                        <a href="{% url 'p_report' %}" class="list-group-item"><i class="fas fa-chart-line"></i>Lab Report</a>                        
-                        <a href="{% url 'p_logout'%}" class="list-group-item"><i class="fas fa-sign-out-alt"></i>Logout</a>                        
+                        <a href="{% url 'p_report' %}" class="list-group-item"><i class="fas fa-chart-line"></i>Lab
+                            Report</a>
+                        <a href="{% url 'p_logout'%}" class="list-group-item"><i
+                                class="fas fa-sign-out-alt"></i>Logout</a>
                     </div>
                 </div>
             </div>
-            <div class="col-9">
+            <div class="col-10">
                 <div class="" id="page_content">
                     {% block content %}
                     {% endblock %}

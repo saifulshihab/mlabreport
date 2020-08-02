@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Doctor Dashboard </title>      
+    <title>Doctor Dashboard </title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -19,36 +19,38 @@
 
     <script src="https://kit.fontawesome.com/a215bce284.js"></script>
 
-    <link rel="stylesheet" href="{% static 'styles/app.css' %}">    
+    <link rel="stylesheet" href="{% static 'styles/app.css' %}">
 
-    <link rel="icon" href="{% static 'images/mlab.PNG'%}" type="" sizes="16x16"> 
+    <link rel="icon" href="{% static 'images/mlab.PNG'%}" type="" sizes="16x16">
 </head>
 
-<body id="_dashboard_body"> 
+<body id="_dashboard_body">
     <div id="_dashboard">
         <nav class="navbar navbar-light bg-light fixed-top">
             {% if doctor %}
             {% for a in doctor %}
             {% if a.doctor_name == "" %}
             <a class="navbar-brand" href="#">Welcome back, {{a.demail}}</a>
-            {% else %}                                        
+            {% else %}
             <a class="navbar-brand" href="#">Welcome back, {{a.doctor_name}}</a>
             {% endif %}
             {% endfor %}
-            {% endif %}                        
+            {% endif %}
         </nav>
         <div class="row" style="margin-top: 56px;">
-            <div class="col-3">
+            <div class="col-2">
                 <div class="sidebar">
                     <div class="side_menu" class="list-group pt">
-                        <a href="{% url 'd_dashboard' %}" class="list-group-item"><i class="fas fa-tachometer-alt"></i>Profile</a>
-                        <a href="{% url 'view_report' %}" class="list-group-item"><i
-                                class="fas fa-chart-line"></i>View report</a>                        
-                        <a href="{% url 'd_logout'%}" class="list-group-item"><i class="fas fa-sign-out-alt"></i>Logout</a>                        
+                        <a href="{% url 'd_dashboard' %}" class="list-group-item"><i
+                                class="fas fa-tachometer-alt"></i>Profile</a>
+                        <a href="{% url 'view_report' %}" class="list-group-item"><i class="fas fa-chart-line"></i>View
+                            report</a>
+                        <a href="{% url 'd_logout'%}" class="list-group-item"><i
+                                class="fas fa-sign-out-alt"></i>Logout</a>
                     </div>
                 </div>
             </div>
-            <div class="col-9">
+            <div class="col-10">
                 <div class="" id="page_content">
                     {% block content %}
                     {% endblock %}

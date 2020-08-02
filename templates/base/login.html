@@ -20,7 +20,7 @@
                     <form action="{% url 'login' %}" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="form-group select_radio">
-                            <span class="d-inline-block mr-3 text-info">Select as</span>
+                            <span class="d-inline-block mr-3 text-info">Login as</span>
                             <div class="form-check form-check-inline">
                               <input
                                 class="form-check-input"
@@ -65,7 +65,7 @@
                     </form>
                     <a href="" style="font-size: 12px;">Forgot Password?</a> <br>
                     <span class="text-secondary" style="font-size: 12px;">Don't have an account?</span>                    
-                    <a href="{% url 'registration' %}" class="btn btn-sm btn-block btn-outline-secondary">Create account</a>
+                    <a href="{% url 'registration' %}">Create account</a>
                     <div class="msgbox mt-2">
                       {% if messages %}
                       {% for msg in messages %}                      
