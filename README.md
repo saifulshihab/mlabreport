@@ -1,7 +1,7 @@
 # blockchain-mlabreport
 Blockchain based medical lab test reporting system where multiple hospital can provide online lab report.
 
-### Package Installed
+### Dependency
     ◙ pip install jinja2                
     ◙ pip install django-crispy-forms  
     ◙ pip install pillow                
